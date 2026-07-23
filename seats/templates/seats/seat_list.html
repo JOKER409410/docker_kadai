@@ -1,0 +1,48 @@
+{% extends "seats/base.html" %}
+
+{% block title %}座席一覧{% endblock %}
+
+{% block content %}
+<header class="header">
+    <p class="header__eyebrow">SEAT MANAGEMENT</p>
+    <h1 class="header__title">座席一覧</h1>
+    <p class="header__stat">使用中 {{ occupied_count }} / {{ total_seats }} 席</p>
+</header>
+
+<section class="controls">
+    <form method="post" action="{% url 'seats:seat_shuffle' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn">使用中の席をランダムに並び替え</button>
+    </form>
+</section>
+
+<div class="grid">
+    {% for row in grouped_rows %}
+    <div class="grid__row">
+        <span class="grid__row-label">{{ forloop.counter }}列目</span>
+        <div class="grid__seats">
+            {% for seat in row %}
+            <div class="seat {% if seat.status == 'occupied' %}seat--occupied{% else %}seat--empty{% endif %}">
+                <span class="seat__pos">{{ seat.row }}-{{ seat.col }}</span>
+
+                {% if seat.status == 'occupied' %}
+                    <span class="seat__name">{{ seat.occupant_name }}</span>
+                    <form method="post" action="{% url 'seats:seat_clear' seat.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="seat__btn">空席にする</button>
+                    </form>
+                {% else %}
+                    <span class="seat__name seat__name--empty">空席</span>
+                    <a href="{% url 'seats:seat_assign' seat.id %}" class="seat__btn seat__btn--link">氏名を入力</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<footer class="footer">
+    <a href="/admin/" class="footer__link">管理画面</a>
+</footer>
+{% endblock %}

@@ -1,0 +1,213 @@
+:root {
+    --paper: #F1ECDD;
+    --paper-dim: #E7E0CC;
+    --ink: #2B2622;
+    --chalkboard: #26332C;
+    --chalkboard-deep: #1B2620;
+    --chalk-line: #5B6F63;
+    --wood: #8B5E3C;
+    --wood-dark: #6B4527;
+    --chalk-yellow: #E8C468;
+    --empty-border: #B9AF98;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Zen Kaku Gothic New", sans-serif;
+}
+
+.page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+/* ヘッダー */
+
+.header {
+    background: var(--chalkboard);
+    color: var(--paper);
+    margin: 0 -20px 28px;
+    padding: 36px 32px 28px;
+    border-bottom: 6px solid var(--wood-dark);
+    text-align: center;
+}
+
+.header__eyebrow {
+    margin: 0 0 6px;
+    letter-spacing: 0.3em;
+    font-size: 12px;
+    color: var(--chalk-yellow);
+}
+
+.header__title {
+    margin: 0 0 8px;
+    font-family: "Zen Old Mincho", serif;
+    font-size: 30px;
+}
+
+.header__stat {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+/* ボタン共通 */
+
+.btn {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid var(--chalk-line);
+    background: var(--chalkboard);
+    color: var(--chalk-yellow);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--wood-dark);
+    border-color: var(--empty-border);
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+/* 座席グリッド */
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.grid__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.grid__row-label {
+    width: 56px;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--wood-dark);
+}
+
+.grid__seats {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* 座席（1マス） */
+
+.seat {
+    width: 120px;
+    min-height: 90px;
+    padding: 10px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.seat--empty {
+    background: var(--paper);
+    border: 2px dashed var(--empty-border);
+}
+
+.seat--occupied {
+    background: var(--wood);
+    border: 2px solid var(--wood-dark);
+    color: var(--paper);
+}
+
+.seat__pos {
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.seat__name {
+    font-family: "Zen Old Mincho", serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.seat__name--empty {
+    color: var(--empty-border);
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.seat__btn {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    background: var(--chalkboard);
+    color: var(--chalk-yellow);
+    text-decoration: none;
+}
+
+.seat--occupied .seat__btn {
+    background: var(--chalkboard-deep);
+}
+
+/* フォーム画面 */
+
+.form-card {
+    max-width: 400px;
+    margin: 0 auto;
+    background: var(--paper-dim);
+    border: 1px solid var(--empty-border);
+    border-radius: 6px;
+    padding: 24px;
+}
+
+.form-card p {
+    margin: 0 0 14px;
+}
+
+.form-card input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--empty-border);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-card__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+/* フッター */
+
+.footer {
+    margin-top: 36px;
+    text-align: center;
+}
+
+.footer__link {
+    color: var(--wood-dark);
+    font-size: 13px;
+}

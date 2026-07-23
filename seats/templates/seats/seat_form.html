@@ -1,0 +1,21 @@
+{% extends "seats/base.html" %}
+
+{% block title %}氏名を入力{% endblock %}
+
+{% block content %}
+<header class="header">
+    <p class="header__eyebrow">SEAT MANAGEMENT</p>
+    <h1 class="header__title">座席 {{ seat.row }}-{{ seat.col }} に着席</h1>
+</header>
+
+<section class="form-card">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-card__actions">
+            <button type="submit" class="btn">着席させる</button>
+            <a href="{% url 'seats:seat_list' %}" class="btn btn--ghost">キャンセル</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
